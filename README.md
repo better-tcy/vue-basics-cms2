@@ -1,7 +1,7 @@
 文档
 
 ## 一.说明
-这是一个基于cli4.x+webpack4.x+element2.x搭建的一个cms基础模板,里面使用的ui组件库的是个人基于element二次封装的,可移步到 https://www.npmjs.com/package/vue-component-storehouse查看文档
+这是一个基于cli4.x+webpack4.x+element2.x搭建的一个cms基础模板,里面使用的ui组件库的是个人基于element二次封装的,可移步到 https://www.npmjs.com/package/vue-component-storehouse 查看组件库文档
 
 ## 二.目录
 ### 1.public:静态资源文件夹
