@@ -29,7 +29,7 @@
       :parentFormData="formData"
       @changeBtnClick="btnClick"
     >
-      插槽部分
+      <!-- 插槽部分 -->
       <el-button type="danger">批量删除</el-button>
     </my-form>
   </div>
@@ -220,3 +220,6 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+</style>

@@ -15,6 +15,13 @@ module.exports = {
       .set('@', resolve('./src'))
     // set第一个参数：设置的别名，第二个参数：设置的路径
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `@import "./src/assets/scss/style.scss";`
+      }
+    }
+  },
 
   devServer: {
     open: true, //是否自动弹出浏览器页面，默认未开启

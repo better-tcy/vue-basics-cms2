@@ -54,6 +54,14 @@
               @click="openMenu"
             ></i>
           </div>
+
+          <div>
+            <div>
+              <el-button type="primary" size="mini" @click="quit"
+                >退出程序</el-button
+              >
+            </div>
+          </div>
         </el-header>
         <el-main :style="{ background: mainBgColor }">
           <router-view></router-view>
@@ -94,6 +102,25 @@ export default {
         this.asideWidth = "100px";
       }
     },
+
+    quit() {
+      this.$confirm("确定要退出程序？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          // 清除缓存token及其他数据
+          localStorage.clear();
+          this.$router.replace("/login");
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消操作",
+          });
+        });
+    },
   },
 };
 </script>
@@ -113,5 +140,6 @@ export default {
 .el-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 </style>

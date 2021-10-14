@@ -8,7 +8,7 @@
 
 ### 2.src:项目资源
 
-* assets:项目资源(初始化css,项目主题自定义配置,图片)
+* assets:项目资源(初始化css,项目主题自定义配置,图片,scss样式)
 * components:组件(页面公共组件,cms框架组件)
 * request:网络请求(api文件夹:包含每个菜单下的接口统一维护,http.js:基于axios封装的网络请求)
 * request:网络请求(api文件夹:包含每个菜单下的接口统一维护,http.js:基于axios封装的网络请求)
@@ -32,6 +32,7 @@
 7.  webpack优化
 8.  集成各种页面所需工具函数
 9.  npm run serve、test、build自动引入对应的环境变量
+10. 支持scss编写样式
 
 ## 四.个人编码规范
 1. views->content文件夹中逐层写每级菜单 request文件夹中一一对应
