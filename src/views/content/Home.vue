@@ -29,8 +29,17 @@
       :parentFormData="formData"
       @changeBtnClick="btnClick"
     >
-      <!-- 插槽部分 -->
-      <el-button type="danger">批量删除</el-button>
+      <!-- formItem插槽：使用的功能 组件中未集成 可使用formItem插槽 -->
+      <template slot="formItem">
+        <el-form-item label="上传图片">
+          如：图片上传 逻辑部分就在本页面中处理即可
+        </el-form-item>
+      </template>
+
+      <!-- btn插槽：表单中其他按钮 -->
+      <template slot="btn">
+        <el-button type="danger">其他按钮</el-button>
+      </template>
     </my-form>
   </div>
 </template>
@@ -172,11 +181,11 @@ export default {
             field: "radioVal",
             options: [
               {
-                name: "男生",
+                label: "男生",
                 value: "1",
               },
               {
-                name: "女生",
+                label: "女生",
                 value: "2",
               },
             ],
@@ -187,15 +196,15 @@ export default {
             field: "checkboxVal",
             options: [
               {
-                name: "红旗",
+                label: "红旗",
                 value: "1",
               },
               {
-                name: "吉利",
+                label: "吉利",
                 value: "2",
               },
               {
-                name: "长城",
+                label: "长城",
                 value: "3",
               },
             ],
