@@ -11,8 +11,6 @@ import {
   myMessage,
   myFreeze,
   myBase64,
-  myImageSecurity,
-  myHasBtnPermission
 } from '@/utils/public'
 
 Vue.prototype.$myMessage = myMessage
@@ -20,10 +18,6 @@ Vue.prototype.$myMessage = myMessage
 Vue.prototype.$myFreeze = myFreeze
 
 Vue.prototype.$myBase64 = myBase64
-
-Vue.prototype.$myImageSecurity = myImageSecurity
-
-Vue.prototype.$myHasBtnPermission = myHasBtnPermission
 
 Vue.config.productionTip = false
 

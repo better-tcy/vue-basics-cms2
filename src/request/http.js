@@ -25,11 +25,7 @@ axios1.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencode
 // 请求拦截器
 axios1.interceptors.request.use(
   config => {
-    console.log('请求拦截器触发')
-    // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
-    // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
     const token = localStorage.getItem('token')
-
     token && (config.headers.token = token)
     return config
   },
@@ -50,11 +46,6 @@ axios1.interceptors.response.use(
 
         // 账号或密码错误
         case 500:
-          Message({
-            message: response.data.msg,
-            type: 'error',
-            duration: 1000,
-          })
           return Promise.reject(response.data.msg)
 
         // 登录过期对用户进行提示
@@ -74,7 +65,7 @@ axios1.interceptors.response.use(
                 query: {
                   // console.log(this.$router.currentRoute === this.$route) // true
                   // 此时的Router和挂载到Vue原型上的this.$router是一样的
-                  redirect: Router.currentRoute.fullPath
+                  redirect: Router.currentRoute.fullPath  // 当前所处的页面的path
                 }
               })
             }, 1000)
@@ -84,39 +75,14 @@ axios1.interceptors.response.use(
         // 其他非0状态
         default:
           if (response.data.code) {
-            // 其他错误
-            Message({
-              message: response.data.msg,
-              type: 'error',
-              duration: 1000,
-            })
             return Promise.reject(response.data.msg)
           }
-          // 防止后端接口返回正确数据 但是未返回状态码
-          return Promise.resolve(response)
       }
     }
   },
   // 网络层状态码不是200的情况
   (error) => {
     if (error.response.status) {
-      switch (error.response.status) {
-        // 404请求不存在
-        case 404:
-          Message({
-            message: '网络请求不存在',
-            type: 'error',
-            duration: 1000,
-          })
-          break
-        // 其他错误，直接抛出错误提示
-        default:
-          Message({
-            message: '服务器错误，请稍后再试',
-            type: 'error',
-            duration: 1000,
-          })
-      }
       return Promise.reject(error.response)
     }
   }
@@ -133,8 +99,12 @@ export function getQuery(url, params) {
       params
     }).then(res => {
       resolve(res.data)
-    }).catch(err => {
-      console.log('非0状态码', err)
+    }).catch((err = "网络出错") => {
+      Message({
+        message: err,
+        type: 'error',
+        duration: 1000,
+      })
       reject(err)
     })
   })
@@ -152,30 +122,14 @@ export function getRestful(url, params) {
   return new Promise((resolve, reject) => {
     axios1.get(`${url}/${id}`).then(res => {
       resolve(res.data)
-    }).catch(err => {
-      console.log('非0状态码', err)
+    }).catch((err = "网络出错") => {
+      Message({
+        message: err,
+        type: 'error',
+        duration: 1000,
+      })
       reject(err)
     })
-  })
-}
-
-/**
- * get方法，对应get请求 (获取验证码图片)
- * @param {String} url [请求的url地址]
- * @param {Object} params [请求时携带的参数]
- */
-export function getCodeImage(url, params) {
-  return new Promise((resolve, reject) => {
-    axios1.get(url, {
-      params,
-      responseType: 'blob'
-    })
-      .then(res => {
-        resolve(res.data)
-      }).catch(err => {
-        console.log('非0状态码', err)
-        reject(err)
-      })
   })
 }
 
@@ -190,9 +144,12 @@ export function post(url, params) {
     axios1.post(url, params)
       .then(res => {
         resolve(res.data)
-      })
-      .catch(err => {
-        console.log('非0状态码', err)
+      }).catch((err = "网络出错") => {
+        Message({
+          message: err,
+          type: 'error',
+          duration: 1000,
+        })
         reject(err)
       })
   })
@@ -208,9 +165,12 @@ export function put(url, params) {
     axios1.put(url, params)
       .then(res => {
         resolve(res.data)
-      })
-      .catch(err => {
-        console.log('非0状态码', err)
+      }).catch((err = "网络出错") => {
+        Message({
+          message: err,
+          type: 'error',
+          duration: 1000,
+        })
         reject(err)
       })
   })
@@ -227,8 +187,12 @@ export function remove(url, params) {
       params
     }).then(res => {
       resolve(res.data)
-    }).catch(err => {
-      console.log('非0状态码', err)
+    }).catch((err = "网络出错") => {
+      Message({
+        message: err,
+        type: 'error',
+        duration: 1000,
+      })
       reject(err)
     })
   })

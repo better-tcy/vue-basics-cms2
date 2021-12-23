@@ -7,13 +7,13 @@
     }"
   >
     <div class="card_content">
-      <div class="title">后台管理系统</div>
+      <div class="title">Hello Betteryourself</div>
       <div class="form">
         <el-form
           :model="ruleForm"
           :rules="rules"
           ref="ruleForm"
-          label-width="100px"
+          label-width="130px"
         >
           <el-form-item label="用户名:" prop="username">
             <el-input v-model="ruleForm.username"></el-input>
@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import { login } from "@/request/api/login/login";
-
 import menuData from "@/assets/data/menuData";
 
 import { mapMutations } from "vuex";
@@ -43,7 +41,6 @@ export default {
 
   data() {
     return {
-      // loginBg: require("@/assets/image/login/login_bg.jpg"),
       ruleForm: {
         username: "",
         password: "",
@@ -78,41 +75,6 @@ export default {
 
     // 前端验证完毕 请求后端登录
     toWhole() {
-      // 密码加密
-      //  this.ruleForm.password = this.$myBase64(this.ruleForm.password);
-
-      // 发送网络请求
-      // login(this.ruleForm)
-      //   .then((res) => {
-      //     console.log("登录成功返回的数据", res);
-
-      //     this.$myMessage({
-      //       message: "登录成功",
-      //       type: "success",
-      //     });
-
-      //     const token = res.data.token;
-      //     const userId = res.data.userId;
-
-      //     localStorage.setItem("token", token);
-      //     localStorage.setItem("userId", userId);
-      //     localStorage.setItem("username", this.ruleForm.username);
-
-      //     // 用户对应的菜单 存储到vuex
-      //     // this.SET_MENU_DATA(res.data.menuList);
-
-      //     // 用户对应的按钮权限列表
-      //     // localStorage.setItem(
-      //     //   "btnPermission",
-      //     //   JSON.stringify(res.data.permsList)
-      //     // );
-
-      //     this.$router.replace("/whole");
-      //   })
-      //   .catch((err) => {
-      //     this.ruleForm = {};
-      //   });
-
       this.$myMessage({
         message: "登录成功",
         type: "success",
@@ -152,35 +114,27 @@ export default {
 
   border-radius: 20px;
 
-  background: linear-gradient(180deg, #112a6e 1%, #071946 100%);
-  border: 1px solid #0775ce;
-  box-shadow: 0px 0px 32px #0775ce inset;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .title {
-  color: #fff;
   font-weight: bold;
   font-size: 20px;
 }
 
 .form {
   width: 100%;
-
   margin-top: 36px;
 }
 
 .btn {
-  position: relative;
-
   margin-top: 10px;
 
   width: 300px;
   height: 50px;
-  background-color: #1e50a7;
+  background-color: #000000;
 
   text-align: center;
   line-height: 50px;
