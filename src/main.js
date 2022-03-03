@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-import MyUI from 'vue-component-storehouse'
-import 'vue-component-storehouse/lib/vue-component-storehouse.css';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 import App from './App.vue'
 import router from './router'
@@ -21,7 +21,7 @@ Vue.prototype.$myBase64 = myBase64
 
 Vue.config.productionTip = false
 
-Vue.use(MyUI)
+Vue.use(ElementUI);
 
 new Vue({
   router,
