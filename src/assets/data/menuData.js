@@ -2,7 +2,7 @@
 const menuData = [
   {
     name: '首页',
-    path: '/content/home',
+    path: '/content/home'
   },
   {
     name: 'one',
@@ -10,10 +10,11 @@ const menuData = [
     children: [
       {
         name: 'oneOne',
-        path: '/content/one/one',
-      }, {
+        path: '/content/one/one'
+      },
+      {
         name: 'oneTwo',
-        path: '/content/one/two',
+        path: '/content/one/two'
       }
     ]
   },
@@ -23,10 +24,11 @@ const menuData = [
     children: [
       {
         name: 'twoOne',
-        path: '/content/two/one',
-      }, {
+        path: '/content/two/one'
+      },
+      {
         name: 'twoTwo',
-        path: '/content/two/two',
+        path: '/content/two/two'
       }
     ]
   }

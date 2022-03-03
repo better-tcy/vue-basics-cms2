@@ -2,7 +2,7 @@ const loginRouter = [
   {
     path: '/login',
     name: 'login',
-    component: resolve => require(['@/views/login/Login.vue'], resolve),
+    component: (resolve) => require(['@/views/login/Login.vue'], resolve)
   }
 ]
 

@@ -1,10 +1,6 @@
-import {
-  Message
-} from 'element-ui';
+import { Message } from 'element-ui'
 
-import {
-  Base64
-} from "js-base64";
+import { Base64 } from 'js-base64'
 
 // message
 export function myMessage(obj) {
@@ -26,9 +22,9 @@ export function myFreeze(data) {
 export function myBase64(data, isEncode = '加密') {
   if (isEncode === '加密') {
     // 加密
-    return Base64.encode(data);
+    return Base64.encode(data)
   } else {
     // 解密
-    return Base64.decode(data);
+    return Base64.decode(data)
   }
 }

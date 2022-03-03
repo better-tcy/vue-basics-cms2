@@ -1,42 +1,40 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 import loginRouter from './login/login'
-import homeRouter from "./content/home";
+import homeRouter from './content/home'
 import oneRouter from './content/one'
 import twoRouter from './content/two'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
-const routes = [{
-  path: '/',
-  redirect: '/login' //重定向
-},
+const routes = [
+  {
+    path: '/',
+    redirect: '/login' //重定向
+  },
 
-...loginRouter,
+  ...loginRouter,
 
-{
-  path: '/content',
-  name: 'content',
-  component: () => import('@/components/frame/FrameWork.vue'),
-  children: [
-    {
-      path: '/content',
-      redirect: '/content/home'
-    },
-    ...homeRouter,
-    ...oneRouter,
-    ...twoRouter
-  ]
-}
-
-];
+  {
+    path: '/content',
+    name: 'content',
+    component: () => import('@/components/frame/FrameWork.vue'),
+    children: [
+      {
+        path: '/content',
+        redirect: '/content/home'
+      },
+      ...homeRouter,
+      ...oneRouter,
+      ...twoRouter
+    ]
+  }
+]
 
 var router = new VueRouter({
   routes
 })
-
-
 
 // 路由导航守卫 前置
 router.beforeEach((to, from, next) => {
@@ -53,12 +51,14 @@ router.beforeEach((to, from, next) => {
   }
 
   if (isNext) {
-    next();
+    next()
   } else {
-    localStorage.getItem('token') ? next() : next({
-      path: '/login',
-    })
+    localStorage.getItem('token')
+      ? next()
+      : next({
+          path: '/login'
+        })
   }
-});
+})
 
-export default router;
+export default router

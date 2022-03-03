@@ -1,9 +1,6 @@
 import axios from 'axios'
 import Router from '@/router/index'
-import {
-  Message,
-  MessageBox
-} from 'element-ui';
+import { Message, MessageBox } from 'element-ui'
 
 // 创建axios实例
 const axios1 = axios.create()
@@ -20,18 +17,20 @@ if (process.env.NODE_ENV === 'development') {
   axios1.defaults.baseURL = ''
 }
 axios1.defaults.timeout = 10000
-axios1.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8;multipart/form-data'
+axios1.defaults.headers.post['Content-Type'] =
+  'application/x-www-form-urlencoded;charset=UTF-8;multipart/form-data'
 
 // 请求拦截器
 axios1.interceptors.request.use(
-  config => {
+  (config) => {
     const token = localStorage.getItem('token')
     token && (config.headers.token = token)
     return config
   },
-  error => {
+  (error) => {
     return Promise.error(error)
-  })
+  }
+)
 
 // 响应拦截器 code只是案例 具体code结合后端来定
 axios1.interceptors.response.use(
@@ -57,7 +56,7 @@ axios1.interceptors.response.use(
             type: 'warning'
           }).then(() => {
             // 清除所有缓存 重新登录
-            localStorage.clear();
+            localStorage.clear()
             // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
             setTimeout(() => {
               Router.replace({
@@ -65,7 +64,7 @@ axios1.interceptors.response.use(
                 query: {
                   // console.log(this.$router.currentRoute === this.$route) // true
                   // 此时的Router和挂载到Vue原型上的this.$router是一样的
-                  redirect: Router.currentRoute.fullPath  // 当前所处的页面的path
+                  redirect: Router.currentRoute.fullPath // 当前所处的页面的path
                 }
               })
             }, 1000)
@@ -95,18 +94,21 @@ axios1.interceptors.response.use(
  */
 export function getQuery(url, params) {
   return new Promise((resolve, reject) => {
-    axios1.get(url, {
-      params
-    }).then(res => {
-      resolve(res.data)
-    }).catch((err = "网络出错") => {
-      Message({
-        message: err,
-        type: 'error',
-        duration: 1000,
+    axios1
+      .get(url, {
+        params
       })
-      reject(err)
-    })
+      .then((res) => {
+        resolve(res.data)
+      })
+      .catch((err = '网络出错') => {
+        Message({
+          message: err,
+          type: 'error',
+          duration: 1000
+        })
+        reject(err)
+      })
   })
 }
 
@@ -116,23 +118,23 @@ export function getQuery(url, params) {
  * @param {Object} params [请求时携带的参数]
  */
 export function getRestful(url, params) {
-  const {
-    id
-  } = params
+  const { id } = params
   return new Promise((resolve, reject) => {
-    axios1.get(`${url}/${id}`).then(res => {
-      resolve(res.data)
-    }).catch((err = "网络出错") => {
-      Message({
-        message: err,
-        type: 'error',
-        duration: 1000,
+    axios1
+      .get(`${url}/${id}`)
+      .then((res) => {
+        resolve(res.data)
       })
-      reject(err)
-    })
+      .catch((err = '网络出错') => {
+        Message({
+          message: err,
+          type: 'error',
+          duration: 1000
+        })
+        reject(err)
+      })
   })
 }
-
 
 /**
  * post方法，对应post请求
@@ -141,14 +143,16 @@ export function getRestful(url, params) {
  */
 export function post(url, params) {
   return new Promise((resolve, reject) => {
-    axios1.post(url, params)
-      .then(res => {
+    axios1
+      .post(url, params)
+      .then((res) => {
         resolve(res.data)
-      }).catch((err = "网络出错") => {
+      })
+      .catch((err = '网络出错') => {
         Message({
           message: err,
           type: 'error',
-          duration: 1000,
+          duration: 1000
         })
         reject(err)
       })
@@ -162,14 +166,16 @@ export function post(url, params) {
  */
 export function put(url, params) {
   return new Promise((resolve, reject) => {
-    axios1.put(url, params)
-      .then(res => {
+    axios1
+      .put(url, params)
+      .then((res) => {
         resolve(res.data)
-      }).catch((err = "网络出错") => {
+      })
+      .catch((err = '网络出错') => {
         Message({
           message: err,
           type: 'error',
-          duration: 1000,
+          duration: 1000
         })
         reject(err)
       })
@@ -177,23 +183,26 @@ export function put(url, params) {
 }
 
 /**
- * delete方法，对应delete请求 
+ * delete方法，对应delete请求
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
 export function remove(url, params) {
   return new Promise((resolve, reject) => {
-    axios1.delete(url, {
-      params
-    }).then(res => {
-      resolve(res.data)
-    }).catch((err = "网络出错") => {
-      Message({
-        message: err,
-        type: 'error',
-        duration: 1000,
+    axios1
+      .delete(url, {
+        params
       })
-      reject(err)
-    })
+      .then((res) => {
+        resolve(res.data)
+      })
+      .catch((err = '网络出错') => {
+        Message({
+          message: err,
+          type: 'error',
+          duration: 1000
+        })
+        reject(err)
+      })
   })
 }

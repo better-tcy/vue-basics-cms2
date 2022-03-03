@@ -13,11 +13,7 @@
           router
         >
           <div v-for="oneMenu in menuData" :key="oneMenu.path">
-            <template
-              v-if="
-                Array.isArray(oneMenu.children) && oneMenu.children.length !== 0
-              "
-            >
+            <template v-if="Array.isArray(oneMenu.children) && oneMenu.children.length !== 0">
               <el-submenu :index="oneMenu.path">
                 <template slot="title">
                   <i class="el-icon-location"></i>
@@ -48,7 +44,7 @@
             <i
               :style="{
                 color: openCloseMenuIconColor,
-                fontSize: openCloseMenuIconSize,
+                fontSize: openCloseMenuIconSize
               }"
               :class="[isCloseMenu ? 'el-icon-s-unfold' : 'el-icon-s-fold']"
               @click="openMenu"
@@ -57,9 +53,7 @@
 
           <div>
             <div>
-              <el-button type="primary" size="mini" @click="quit"
-                >退出程序</el-button
-              >
+              <el-button type="primary" size="mini" @click="quit">退出程序</el-button>
             </div>
           </div>
         </el-header>
@@ -72,57 +66,57 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 export default {
   inject: [
-    "asideBgColor",
-    "menuTextColor",
-    "menuTextActiveColor",
-    "headBgColor",
-    "openCloseMenuIconColor",
-    "openCloseMenuIconSize",
-    "mainBgColor",
+    'asideBgColor',
+    'menuTextColor',
+    'menuTextActiveColor',
+    'headBgColor',
+    'openCloseMenuIconColor',
+    'openCloseMenuIconSize',
+    'mainBgColor'
   ],
   data() {
     return {
       isCloseMenu: false,
-      asideWidth: "200px",
-    };
+      asideWidth: '200px'
+    }
   },
   computed: {
-    ...mapState(["menuData"]),
+    ...mapState(['menuData'])
   },
   methods: {
     openMenu() {
       if (this.isCloseMenu) {
-        this.isCloseMenu = false;
-        this.asideWidth = "200px";
+        this.isCloseMenu = false
+        this.asideWidth = '200px'
       } else {
-        this.isCloseMenu = true;
-        this.asideWidth = "100px";
+        this.isCloseMenu = true
+        this.asideWidth = '100px'
       }
     },
 
     quit() {
-      this.$confirm("确定要退出程序？", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
+      this.$confirm('确定要退出程序？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           // 清除缓存token及其他数据
-          localStorage.clear();
-          this.$router.replace("/login");
+          localStorage.clear()
+          this.$router.replace('/login')
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消操作",
-          });
-        });
-    },
-  },
-};
+            type: 'info',
+            message: '已取消操作'
+          })
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -3,18 +3,13 @@
     class="whole"
     :style="{
       backgroundImage: `url(${loginBgImg})`,
-      backgroundColor: loginBgColor,
+      backgroundColor: loginBgColor
     }"
   >
     <div class="card_content">
       <div class="title">Hello Betteryourself</div>
       <div class="form">
-        <el-form
-          :model="ruleForm"
-          :rules="rules"
-          ref="ruleForm"
-          label-width="130px"
-        >
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="130px">
           <el-form-item label="用户名:" prop="username">
             <el-input v-model="ruleForm.username"></el-input>
           </el-form-item>
@@ -29,28 +24,28 @@
 </template>
 
 <script>
-import menuData from "@/assets/data/menuData";
+import menuData from '@/assets/data/menuData'
 
-import { mapMutations } from "vuex";
-import { SET_MENU_DATA } from "@/store/types";
+import { mapMutations } from 'vuex'
+import { SET_MENU_DATA } from '@/store/types'
 
 export default {
-  name: "login",
-  inject: ["loginBgImg", "loginBgColor"],
+  name: 'login',
+  inject: ['loginBgImg', 'loginBgColor'],
   components: {},
 
   data() {
     return {
       ruleForm: {
-        username: "",
-        password: "",
+        username: '',
+        password: ''
       },
 
       rules: {
-        username: [{ required: true, message: "请输入账号", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-      },
-    };
+        username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+      }
+    }
   },
 
   created() {},
@@ -59,36 +54,36 @@ export default {
 
   methods: {
     ...mapMutations({
-      SET_MENU_DATA,
+      SET_MENU_DATA
     }),
 
     // 登录(前端检验)
     toFrameWork(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.toWhole();
+          this.toWhole()
         } else {
-          return false;
+          return false
         }
-      });
+      })
     },
 
     // 前端验证完毕 请求后端登录
     toWhole() {
       this.$myMessage({
-        message: "登录成功",
-        type: "success",
-      });
+        message: '登录成功',
+        type: 'success'
+      })
 
-      localStorage.setItem("token", "后端返回的token");
+      localStorage.setItem('token', '后端返回的token')
 
       // 用户对应的菜单 存储到vuex (此时使用的是模拟数据,ps:真正的菜单数据 是根据登录的用户 后台返回的)
-      this.SET_MENU_DATA(menuData);
+      this.SET_MENU_DATA(menuData)
 
-      this.$router.replace("/content");
-    },
-  },
-};
+      this.$router.replace('/content')
+    }
+  }
+}
 </script>
 
 <style scoped>
